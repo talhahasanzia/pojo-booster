@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pojo-booster/pojo-booster.iml" filepath="$PROJECT_DIR$/pojo-booster/pojo-booster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pojo-booster-example.iml" filepath="$PROJECT_DIR$/pojo-booster-example.iml" />
+    </modules>
+  </component>
+</project>
