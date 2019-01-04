@@ -12,6 +12,6 @@ POJO Booster will provide an annotation which will put dummy values to your obje
 - Simple initialization of objects at runtime.
 - See [MainTest](https://github.com/talhahasanzia/pojo-booster/blob/master/src/com/talhahasanzia/MainTest.java) for sample usage.
 - See [PojoBooster](https://github.com/talhahasanzia/pojo-booster/blob/master/pojo-booster/src/com/talhahasanzia/pojo/booster/PojoBooster.java) for original implementation.
-### todo:
+### Todo:
 - array support
 - fix value support
