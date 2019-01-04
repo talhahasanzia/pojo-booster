@@ -7,6 +7,11 @@ In fact, if these objects contains other objects, and those other objects and so
 
 POJO Booster will provide an annotation which will put dummy values to your objects at runtime. This will help you focus on writing tests and less time on writting setter calls for these objects.
 
-todo:
+
+### Working:
+- Simple initialization of objects at runtime.
+- See [MainTest](https://github.com/talhahasanzia/pojo-booster/blob/master/src/com/talhahasanzia/MainTest.java) for sample usage.
+- See [PojoBooster](https://github.com/talhahasanzia/pojo-booster/blob/master/pojo-booster/src/com/talhahasanzia/pojo/booster/PojoBooster.java) for original implementation.
+### todo:
 - array support
 - fix value support
