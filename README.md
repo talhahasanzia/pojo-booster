@@ -6,3 +6,7 @@ Sometimes, there is a need for data to be populated in bulk. Where the parameter
 In fact, if these objects contains other objects, and those other objects and so on, setting dummy values can take a lot of time and also increases the lines of code written/executed in test cases. 
 
 POJO Booster will provide an annotation which will put dummy values to your objects at runtime. This will help you focus on writing tests and less time on writting setter calls for these objects.
+
+todo:
+- array support
+- fix value support
