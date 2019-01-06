@@ -18,7 +18,6 @@ public class MainTest {
 
     @Before
     public void setUp() throws Exception {
-
         // initialize all boosters that were marked in this current class (MainTest.java)
         PojoBooster.boost(this);
     }

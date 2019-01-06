@@ -1,7 +1,9 @@
 package com.talhahasanzia;
 
+import com.talhahasanzia.pojo.annotation.CharacterConfig;
 import com.talhahasanzia.pojo.annotation.TestValue;
 import com.talhahasanzia.pojo.annotation.Unsigned;
+import com.talhahasanzia.pojo.constants.CharacterSet;
 
 public class Sample {
 
@@ -21,6 +23,8 @@ public class Sample {
     private Double someDouble;
     private float someFloat;
     private Integer boxInt;
+
+    @CharacterConfig(length = 10, characterSet = CharacterSet.ALPHABETS)
     private String userName;
 
 

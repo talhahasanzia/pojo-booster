@@ -1,17 +1,19 @@
 package com.talhahasanzia.pojo.booster;
 
 import com.talhahasanzia.pojo.annotation.Boost;
-import com.talhahasanzia.pojo.annotation.StringValue;
+import com.talhahasanzia.pojo.annotation.CharacterConfig;
 import com.talhahasanzia.pojo.annotation.TestValue;
 import com.talhahasanzia.pojo.annotation.Unsigned;
+import com.talhahasanzia.pojo.constants.CharacterSet;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
  * Course set to Martian Orbit!
+ * It's not rocket science!
+ * (This code takes care of initializing all the annotated fields.)
  */
 public final class PojoBooster {
 
@@ -203,9 +205,16 @@ public final class PojoBooster {
                 char testValue = booster.getAnnotation(TestValue.class).characterValue();
                 booster.set(parent, testValue);
 
+            } else if (booster.isAnnotationPresent(CharacterConfig.class)) {
+
+                // a configuration was present so check its values, here we only need character set values
+                int characterSet = booster.getAnnotation(CharacterConfig.class).characterSet();
+                booster.set(parent, getCharacter(characterSet));
+
             } else {
-                // by default, generate a random value
-                booster.set(parent, getCharacter());
+                // defaults to alphabet set
+                booster.set(parent, getCharacter(CharacterSet.ALPHABETS));
+
             }
         }
 
@@ -219,11 +228,12 @@ public final class PojoBooster {
 
             } else {
                 // by default, generate a random value'
-                if (booster.isAnnotationPresent(StringValue.class)) {
-                    int testLength = booster.getAnnotation(StringValue.class).length();
-
+                if (booster.isAnnotationPresent(CharacterConfig.class)) {
+                    int length = booster.getAnnotation(CharacterConfig.class).length();
+                    int characterSet = booster.getAnnotation(CharacterConfig.class).characterSet();
+                    booster.set(parent, getString(length, characterSet));
                 } else {
-                    booster.set(parent, getString(8, -1));
+                    booster.set(parent, getString(8, CharacterSet.ALL));
                 }
 
             }
@@ -260,36 +270,79 @@ public final class PojoBooster {
         return (int) ((Math.random()) * (Integer.MAX_VALUE - min) + min);
     }
 
-    private static char getCharacter() {
-        return 'c';
+    private static char getCharacter(int characterSet) {
+        return getRandomChar(characterSet);
     }
 
-    private static String getString(int length, int flag) {
-        return getNewRandomPhrase(length, flag);
+    private static char getRandomChar(int characterSet) {
+        char[] charSet = getAllowedCharacterSet(characterSet);
+
+        int randomIndex = new Random().nextInt((charSet.length - 1) + 1);
+
+
+        char result = charSet[randomIndex];
+
+        return result;
     }
 
-    public static String getNewRandomPhrase(int length, int flag) {
+    private static String getString(int length, int characterSet) {
+        return getNewRandomPhrase(length, characterSet);
+    }
+
+    private static String getNewRandomPhrase(int length, int characterSet) {
         Random randomizer = new Random();
 
-        // create a random string using alphabets and characters
-        char[] charactersRange = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
-        char[] special = "~!@#$%^&*()_+=-[]';,./<>?:\"{}|".toCharArray();
-
-        char[] numerics = "0123456789".toCharArray();
-
+        char[] allowedCharacters = getAllowedCharacterSet(characterSet);
 
         char[] randomData = new char[length];
 
         for (int i = 0; i < length - 1; i++) {
 
-            int randomIndex = randomizer.nextInt(35 + 1);
+            int randomIndex = randomizer.nextInt((allowedCharacters.length - 1) + 1);
 
-            randomData[i] = charactersRange[randomIndex];
+            randomData[i] = allowedCharacters[randomIndex];
         }
 
-        // fixme: string conversion
-        return Arrays.toString(randomData);
+        return String.valueOf(randomData);
+    }
+
+    private static char[] getAllowedCharacterSet(int flag) {
+
+        char[] characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+        char[] numerals = "0123456789".toCharArray();
+
+        char[] special = "~!@#$%^&*()_+=-[]';,./<>?:\"{}|".toCharArray();
+
+        char[] characterSet = new char[0];
+
+        if (flag == CharacterSet.ALL) {
+            characterSet = new char[numerals.length + special.length + characters.length];
+            // combine all 3 sets
+            System.arraycopy(characters, 0, characterSet, 0, characters.length);
+            System.arraycopy(numerals, 0, characterSet, characters.length, numerals.length);
+            System.arraycopy(special, 0, characterSet, numerals.length + characters.length, special.length);
+
+
+        } else if (flag == CharacterSet.ALPHABETS) {
+            // only alphabets
+            characterSet = characters;
+
+        } else if (flag == CharacterSet.ALPHANUMERIC) {
+            // alphanumeric characters
+            characterSet = new char[numerals.length + characters.length];
+            // combine these two
+            System.arraycopy(characters, 0, characterSet, 0, characters.length);
+            System.arraycopy(numerals, 0, characterSet, characters.length, numerals.length);
+
+        } else if (flag == CharacterSet.NUMERALS) {
+            // only numbers
+            characterSet = numerals;
+        }
+
+
+        return characterSet;
     }
 
     // Check whether it is standard Falcon 9 Rocket booster or not!
