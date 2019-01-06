@@ -1,4 +1,4 @@
-package com.talhahasanzia.pojo.constants;
+package io.github.talhahasanzia.constants;
 
 /**
  * Describes the set of characters that will be used in string's random generation!

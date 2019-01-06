@@ -1,10 +1,11 @@
-package com.talhahasanzia.pojo.booster;
+package io.github.talhahasanzia.booster;
 
-import com.talhahasanzia.pojo.annotation.Boost;
-import com.talhahasanzia.pojo.annotation.CharacterConfig;
-import com.talhahasanzia.pojo.annotation.TestValue;
-import com.talhahasanzia.pojo.annotation.Unsigned;
-import com.talhahasanzia.pojo.constants.CharacterSet;
+
+import io.github.talhahasanzia.annotation.Boost;
+import io.github.talhahasanzia.annotation.CharacterConfig;
+import io.github.talhahasanzia.annotation.TestValue;
+import io.github.talhahasanzia.annotation.Unsigned;
+import io.github.talhahasanzia.constants.CharacterSet;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -280,9 +281,7 @@ public final class PojoBooster {
         int randomIndex = new Random().nextInt((charSet.length - 1) + 1);
 
 
-        char result = charSet[randomIndex];
-
-        return result;
+        return charSet[randomIndex];
     }
 
     private static String getString(int length, int characterSet) {

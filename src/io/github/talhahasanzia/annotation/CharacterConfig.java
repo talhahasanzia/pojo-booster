@@ -1,6 +1,7 @@
-package com.talhahasanzia.pojo.annotation;
+package io.github.talhahasanzia.annotation;
 
-import com.talhahasanzia.pojo.constants.CharacterSet;
+
+import io.github.talhahasanzia.constants.CharacterSet;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,7 +20,7 @@ public @interface CharacterConfig {
 
     /**
      * Describes the set of characters that will be used in string's random generation!
-     * Must be of type {@link CharacterSet}
+     * Must be of type {@link io.github.talhahasanzia.constants.CharacterSet}
      */
     int characterSet() default CharacterSet.ALL;
 
