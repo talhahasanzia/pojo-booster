@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
+import java.util.Random;
+
 @RunWith(BlockJUnit4ClassRunner.class)
 public class MainTest {
 
@@ -16,6 +18,7 @@ public class MainTest {
 
     @Before
     public void setUp() throws Exception {
+
         // initialize all boosters that were marked in this current class (MainTest.java)
         PojoBooster.boost(this);
     }

@@ -1,11 +1,28 @@
 package com.talhahasanzia;
 
+import com.talhahasanzia.pojo.annotation.TestValue;
+import com.talhahasanzia.pojo.annotation.Unsigned;
+
 public class Sample {
 
+    @Unsigned
     private int userId;
+
     private char userType;
+
+    @TestValue(longValue = 33)
     private long sign;
+
+    private short someShort;
+
+    @Unsigned
+    private byte someByte;
+
+    private Double someDouble;
+    private float someFloat;
+    private Integer boxInt;
     private String userName;
+
 
     public Sample() {
     }
@@ -26,8 +43,29 @@ public class Sample {
         return sign;
     }
 
+    public short getSomeShort() {
+        return someShort;
+    }
+
+    public byte getSomeByte() {
+        return someByte;
+    }
+
+    public Double getSomeDouble() {
+        return someDouble;
+    }
+
+    public float getSomeFloat() {
+        return someFloat;
+    }
+
+    public Integer getBoxInt() {
+        return boxInt;
+    }
+
     @Override
     public String toString() {
-        return "UserId: " + userId + ", UserType: " + userType + ", User Sign: " + sign + ", UserName: " + userName;
+        return "UserId: " + userId + ", UserType: " + userType + ", User Sign: " + sign + ", UserName: " + userName
+                + "\nSomeShort: " + someShort;
     }
 }
