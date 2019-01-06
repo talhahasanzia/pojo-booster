@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pojo-booster:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/pojo_booster_jar</output-path>
+    <root id="archive" name="pojo-booster.jar">
+      <element id="module-output" name="pojo-booster" />
+    </root>
+  </artifact>
+</component>
