@@ -296,7 +296,7 @@ public final class PojoBooster {
 
         char[] randomData = new char[length];
 
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < length; i++) {
 
             int randomIndex = randomizer.nextInt((allowedCharacters.length - 1) + 1);
 
