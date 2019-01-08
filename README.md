@@ -37,8 +37,8 @@ public class TestCase extends Test
     
     @Test
     public void testDto(){
-    // start testing dto with dummy values
-    assertNotNull(sampleDto);
+      // start testing dto with dummy values
+      assertNotNull(sampleDto);
     }
     
     
@@ -51,12 +51,14 @@ public class TestCase extends Test
  public class SampleDto{
  
     // specify length and character set
+    
     @CharacterConfig(length = 8, characterSet = CharacterSet.ALPHABETS)
     String name;
     
     String address;
     
     // mark this as unsigned, to be generated with only positive values
+    
     @Unsigned
     int age;
     
