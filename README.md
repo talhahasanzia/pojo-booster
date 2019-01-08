@@ -37,6 +37,7 @@ public class TestCase extends Test
     
     @Before
     public void setup(){
+      // Call initializer to start boosters      
       PojoBooster.boost( this );
     }
     
