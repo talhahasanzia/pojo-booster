@@ -24,8 +24,6 @@ Available Version:  [1.0](https://github.com/talhahasanzia/pojo-booster/releases
 [Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/io/github/talhahasanzia)
 
 ## Getting Started
-
-## Using in your project
 - Consider you are writing test, and you use a SampleDto class, following example illustrates how can you use this library to generate data.
 
 
