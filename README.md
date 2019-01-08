@@ -62,6 +62,11 @@ public class TestCase extends Test
     @Unsigned
     int age;
     
+    // set exact value
+    
+    @TestValue( booleanValue = true )
+    boolean isValidUser;
+    
     Double signature;
  
  }
