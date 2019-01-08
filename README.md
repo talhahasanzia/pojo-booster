@@ -35,6 +35,12 @@ public class TestCase extends Test
     @Boost
     private SampleDto sampleDto;
     
+    @Before
+    public void setup(){
+      PojoBooster.boost( this );
+    }
+    
+    
     @Test
     public void testDto(){
       // start testing dto with dummy values
