@@ -9,6 +9,8 @@ import io.github.talhahasanzia.constants.CharacterSet;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -56,6 +58,9 @@ public final class PojoBooster {
         // check if field was standard variable type
         if (isStandardBooster(booster)) {
             liftOff(booster, parent);
+        } else if (booster.getType().isEnum()) {
+            // Enums are treated specially
+            specialLiftOff(booster, parent);
         } else {
             // field was user defined class
             forceLiftOff(booster, parent);
@@ -63,25 +68,8 @@ public final class PojoBooster {
 
     }
 
-    // Holy Cow! This was special type of Rocket Booster, We need extra effort to start it off!
-    private static void forceLiftOff(Field booster, Object parent) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-
-        // field was not any standard variable type, so we needed to initialize it with its constructor
-
-        Object instance = booster.getType().getConstructor().newInstance();
-        booster.set(parent, instance);
-
-        // if it was a user defined class, we need to set values to its members also
-
-        // All sub-boosters must also be started!!
-        for (Field subBooster : booster.getType().getDeclaredFields()) {
-            // Goooo!!!!!!!!!
-            ignite(subBooster, instance);
-        }
-    }
-
-    // 3, 2, 1.... and Lift Off!!
     private static void liftOff(Field booster, Object parent) throws IllegalAccessException {
+        // 3, 2, 1.... and Lift Off!!
         // set field accessible!
         booster.setAccessible(true);
 
@@ -240,6 +228,45 @@ public final class PojoBooster {
             }
         }
 
+    }
+
+    // Holy Cow! This was special type of Rocket Booster, We need extra effort to start it off!
+    private static void forceLiftOff(Field booster, Object parent) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
+        // field was not any standard variable type, so we needed to initialize it with its constructor
+
+        Object instance = booster.getType().getConstructor().newInstance();
+        booster.set(parent, instance);
+
+        // if it was a user defined class, we need to set values to its members also
+
+        // All sub-boosters must also be started!!
+        for (Field subBooster : booster.getType().getDeclaredFields()) {
+            // Goooo!!!!!!!!!
+            ignite(subBooster, instance);
+        }
+    }
+
+
+    // for Special Enum Types
+    private static void specialLiftOff(Field booster, Object parent) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+
+        // set this to be accessible
+        booster.setAccessible(true);
+
+        List<?> list = Arrays.asList(booster.getType().getEnumConstants());
+        int randomElement = getRandomIndex(list.size());
+
+
+        booster.set(
+                parent,
+                Enum.valueOf((Class<Enum>) booster.getType(),
+                        String.valueOf(list.get(randomElement))));
+    }
+
+
+    private static int getRandomIndex(int size) {
+        return (int) ((Math.random()) * (size) + 0);
     }
 
     private static short getShort(int min) {
