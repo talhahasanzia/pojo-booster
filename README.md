@@ -8,10 +8,100 @@ In fact, if these objects contains other objects, and those other objects and so
 POJO Booster will provide an annotation which will put dummy values to your objects at runtime. This will help you focus on writing tests and less time on writting setter calls for these objects.
 
 
-### Working:
-- Simple initialization of objects at runtime.
-- See [MainTest](https://github.com/talhahasanzia/pojo-booster/blob/master/src/com/talhahasanzia/MainTest.java) for sample usage.
-- See [PojoBooster](https://github.com/talhahasanzia/pojo-booster/blob/master/pojo-booster/src/com/talhahasanzia/pojo/booster/PojoBooster.java) for original implementation.
-### Todo:
-- array support
-- fix value support
+
+### Advantages
+- Use this to populate dummy values for scenarios like writing test cases.
+- Saves time by preventing developers from calling dozens of setters or mock calls.
+- Loops down the child objects and also initializes them.
+- Gives flexibility to set specified values by the user.
+
+
+## Release
+Available Version:  [1.0](https://github.com/talhahasanzia/pojo-booster/releases/tag/v1.0)
+
+
+## Library Source
+[Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/io/github/talhahasanzia)
+
+## Getting Started
+- Consider you are writing test, and you use a SampleDto class, following example illustrates how can you use this library to generate data.
+
+
+```
+
+public class TestCase extends Test
+ {
+ 
+    @Boost
+    private SampleDto sampleDto;
+    
+    @Before
+    public void setup(){
+      // Call initializer to start boosters      
+      PojoBooster.boost( this );
+    }
+    
+    
+    @Test
+    public void testDto(){
+      // start testing dto with dummy values
+      assertNotNull(sampleDto);
+    }
+    
+    
+ 
+ ...
+ }
+ 
+ // to set your values
+ 
+ public class SampleDto{
+ 
+    // specify length and character set
+    
+    @CharacterConfig(length = 8, characterSet = CharacterSet.ALPHABETS)
+    String name;
+    
+    String address;
+    
+    // mark this as unsigned, to be generated with only positive values
+    
+    @Unsigned
+    int age;
+    
+    // set exact value
+    
+    @TestValue( booleanValue = true )
+    boolean isValidUser;
+    
+    Double signature;
+ 
+ }
+  
+ ```
+
+## Change Log
+
+**1.0**
+
+Generating values including child objects. Also configure String, Character and Number variables with provided annotations.
+
+
+
+## Contributing
+
+- Contributions are welcomed as long as they dont break the code. Please create an issue and have a discussion before pull request.
+- There is still WIP so don't hesitate to report issues or pull requests.
+- Also, if you created a skin based on this library you can create a pull request and we will add it in official release.
+
+
+
+## Authors
+
+* **Talha** - *Initial work* - [@talhahasanzia](https://github.com/talhahasanzia)
+
+## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/talhahasanzia/pojo-booster/blob/master/LICENSE) file for details.
+
+
