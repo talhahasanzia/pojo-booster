@@ -19,9 +19,29 @@ POJO Booster will provide an annotation which will put dummy values to your obje
 ## Release
 Available Version:  [1.0](https://github.com/talhahasanzia/pojo-booster/releases/tag/v1.0)
 
+## Using in your project
 
-## Library Source
-[Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/io/github/talhahasanzia)
+- Maven:
+
+```
+<dependency>
+	<groupId>io.github.talhahasanzia</groupId>
+	<artifactId>pojo-booster</artifactId>
+	<version>1.1</version>
+	<type>pom</type>
+</dependency>
+```
+- Gradle
+
+```
+compile 'io.github.talhahasanzia:pojo-booster:1.1'
+```
+- Ivy
+```
+<dependency org="io.github.talhahasanzia" name="pojo-booster" rev="1.1">
+	<artifact name="pojo-booster" ext="pom"></artifact>
+</dependency>
+```
 
 ## Getting Started
 - Consider you are writing test, and you use a SampleDto class, following example illustrates how can you use this library to generate data.
@@ -90,6 +110,9 @@ Generating values including child objects. Also configure String, Character and 
 
 Added support for generating Enum values.
 
+
+## Library Source
+[Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/io/github/talhahasanzia)
 
 
 ## Contributing
