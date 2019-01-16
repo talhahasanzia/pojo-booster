@@ -6,7 +6,7 @@
 
     <groupId>io.github.talhahasanzia</groupId>
     <artifactId>pojo-booster</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -15,5 +15,19 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-talhahasanzia-Pojo-Booster</id>
+            <name>talhahasanzia-Pojo-Booster</name>
+            <url>https://api.bintray.com/maven/talhahasanzia/Pojo-Booster/pojo-booster/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
 </project>
