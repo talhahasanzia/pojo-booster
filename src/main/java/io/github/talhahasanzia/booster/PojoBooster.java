@@ -251,17 +251,28 @@ public final class PojoBooster {
     // for Special Enum Types
     private static void specialLiftOff(Field booster, Object parent) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
 
+        String testValue;
+
         // set this to be accessible
         booster.setAccessible(true);
 
-        List<?> list = Arrays.asList(booster.getType().getEnumConstants());
-        int randomElement = getRandomIndex(list.size());
 
+        if (booster.isAnnotationPresent(TestValue.class)) {
+            // get user provided test value for Enum type (Expressed as String constant of enum
+            testValue = booster.getAnnotation(TestValue.class).stringValue();
+
+        } else {
+            // if not then generate enum constant as random value
+            List<?> list = Arrays.asList(booster.getType().getEnumConstants());
+            int randomElement = getRandomIndex(list.size());
+
+            testValue = String.valueOf(list.get(randomElement));
+        }
 
         booster.set(
                 parent,
                 Enum.valueOf((Class<Enum>) booster.getType(),
-                        String.valueOf(list.get(randomElement))));
+                        testValue));
     }
 
 

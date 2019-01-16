@@ -86,6 +86,10 @@ public class TestCase extends Test
 
 Generating values including child objects. Also configure String, Character and Number variables with provided annotations.
 
+**1.1**
+
+Added support for generating Enum values.
+
 
 
 ## Contributing
@@ -105,3 +109,6 @@ Generating values including child objects. Also configure String, Character and 
 This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/talhahasanzia/pojo-booster/blob/master/LICENSE) file for details.
 
 
+## Code Credits
+
+- Enum generation from [this StackOverflow answer](https://stackoverflow.com/a/3735968/4856761)
