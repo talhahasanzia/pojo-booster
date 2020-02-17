@@ -112,7 +112,7 @@ Added support for generating Enum values.
 
 
 ## Library Source
-[Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/io/github/talhahasanzia)
+[Jump to library source.](https://github.com/talhahasanzia/pojo-booster/tree/master/src/main/java/io/github/talhahasanzia)
 
 
 ## Contributing
